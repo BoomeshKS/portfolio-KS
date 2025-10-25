@@ -60,8 +60,14 @@ function Header({ onNavClick, theme, setTheme }) {
             </DropdownMenuContent>
           </DropdownMenu>
           <a href={`mailto:${profile.contacts.email}?subject=${encodeURIComponent(profile.contacts.mail.subject)}&body=${profile.contacts.mail.body}`}>
-            <Button className="btn-brand" aria-label="Email me">
-              <Mail size={18} className="mr-2"/> Contact
+            <Button
+              className="btn-brand group flex items-center justify-center sm:justify-center hover:text-white"
+              aria-label="Email me"
+            >
+              <Mail size={18} className="text-current group-hover:text-white" />
+              <span className="hidden sm:inline ml-2 group-hover:text-white">
+                Contact
+              </span>
             </Button>
           </a>
         </div>
