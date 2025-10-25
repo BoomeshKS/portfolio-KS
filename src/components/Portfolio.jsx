@@ -224,32 +224,89 @@ function Contact() {
   const mail = `mailto:${profile.contacts.email}?subject=${encodeURIComponent(profile.contacts.mail.subject)}&body=${profile.contacts.mail.body}`;
   return (
     <section id="contact" className="section section-muted">
-      <div className="container-xx">
-        <h2 className="section-title reveal">Contact</h2>
-        <p className="section-sub reveal">Quick links to reach me. WhatsApp button floats on mobile too.</p>
-        <div className="grid md:grid-cols-5 gap-4">
-          <a className="card p-5 reveal" href={mail} aria-label="Email with prefilled subject and body">
-            <div className="flex items-center gap-2"><Mail size={18}/><span>Email</span></div>
-            <p className="text-sm opacity-70 mt-1">{profile.contacts.email}</p>
-          </a>
-          <a className="card p-5 reveal" href={`tel:${profile.contacts.phone}`} aria-label="Tap to call">
-            <div className="flex items-center gap-2"><Phone size={18}/><span>Phone</span></div>
-            <p className="text-sm opacity-70 mt-1">{profile.contacts.phone}</p>
-          </a>
-          <a className="card p-5 reveal" href={profile.contacts.linkedin} target="_blank" rel="noreferrer" aria-label="Open LinkedIn">
-            <div className="flex items-center gap-2"><Linkedin size={18}/><span>LinkedIn</span></div>
-            <p className="text-sm opacity-70 mt-1 truncate">{profile.contacts.linkedin}</p>
-          </a>
-          <a className="card p-5 reveal" href={profile.contacts.github} target="_blank" rel="noreferrer" aria-label="Open GitHub">
-            <div className="flex items-center gap-2"><Github size={18}/><span>GitHub</span></div>
-            <p className="text-sm opacity-70 mt-1 truncate">{profile.contacts.github}</p>
-          </a>
-          <a className="card p-5 reveal" href={wa} aria-label="Chat on WhatsApp with prefilled text">
-            <div className="flex items-center gap-2"><MessageCircleMore size={18}/><span>WhatsApp</span></div>
-            <p className="text-sm opacity-70 mt-1 truncate">Prefilled: "{profile.contacts.whatsapp.message}"</p>
-          </a>
-        </div>
+    <div className="container-xx">
+      <h2 className="section-title reveal">Contact</h2>
+      <p className="section-sub reveal">
+        Quick links to reach me. WhatsApp button floats on mobile too.
+      </p>
+      <div className="grid md:grid-cols-5 gap-4 justify-center">
+        <a
+          className="card p-5 reveal"
+          href={mail}
+          aria-label="Email with prefilled subject and body"
+          style={{ width: "180px", margin: "auto" }}
+        >
+          <div className="flex items-center gap-2">
+            <Mail size={18} />
+            <span>Email</span>
+          </div>
+          {/* <p className="text-sm opacity-70 mt-1">{profile.contacts.email}</p> */}
+        </a>
+
+        <a
+          className="card p-5 reveal"
+          href={`tel:${profile.contacts.phone}`}
+          aria-label="Tap to call"
+          style={{ width: "180px", margin: "auto" }}
+        >
+          <div className="flex items-center gap-2">
+            <Phone size={18} />
+            <span>Phone</span>
+          </div>
+          {/* <p className="text-sm opacity-70 mt-1">{profile.contacts.phone}</p> */}
+        </a>
+
+        <a
+          className="card p-5 reveal"
+          href={profile.contacts.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Open LinkedIn"
+          style={{ width: "180px", margin: "auto" }}
+        >
+          <div className="flex items-center gap-2">
+            <Linkedin size={18} />
+            <span>LinkedIn</span>
+          </div>
+          {/* <p className="text-sm opacity-70 mt-1 truncate">
+            {profile.contacts.linkedin}
+          </p> */}
+        </a>
+
+        <a
+          className="card p-5 reveal"
+          href={profile.contacts.github}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Open GitHub"
+          style={{ width: "180px", margin: "auto" }}
+        >
+          <div className="flex items-center gap-2">
+            <Github size={18} />
+            <span>GitHub</span>
+          </div>
+          {/* <p className="text-sm opacity-70 mt-1 truncate">
+            {profile.contacts.github}
+          </p> */}
+        </a>
+
+        <a
+          className="card p-5 reveal"
+          href={wa}
+          aria-label="Chat on WhatsApp with prefilled text"
+          style={{ width: "180px", margin: "auto" }}
+        >
+          <div className="flex items-center gap-2">
+            <MessageCircleMore size={18} />
+            <span>WhatsApp</span>
+          </div>
+          {/* <p className="text-sm opacity-70 mt-1 truncate">
+            Prefilled: "{profile.contacts.whatsapp.message}"
+          </p> */}
+        </a>
       </div>
+    </div>
+
       <a className="whatsapp-fab" href={wa} aria-label="Chat on WhatsApp">
         <Button className="btn-brand"><MessageCircleMore size={18} className="mr-2"/> WhatsApp</Button>
       </a>
