@@ -8,8 +8,8 @@ export const profile = {
   contacts: {
     email: "boomeshks@gmail.com",
     phone: "+91 7305235735",
-    linkedin: "https://www.linkedin.com/", // TODO: replace with actual profile
-    github: "https://github.com/", // TODO: replace with actual profile
+    linkedin: "https://www.linkedin.com/in/boomesh-ks-full-stack-developer", // TODO: replace with actual profile
+    github: "https://github.com/BoomeshKS", // TODO: replace with actual profile
     website: null,
     whatsapp: {
       number: "917305235735", // E.164 without + for wa.me links
