@@ -1,0 +1,122 @@
+/* Premium Portfolio Styles (frontend-only mock) */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #ffffff;
+  --text: #0f1115;
+  --muted: #f5f6f7;
+  --brand: #b68a5c; /* soft gold default */
+  --brand-contrast: #0f1115;
+  --card: #ffffff;
+  --shadow: 0 10px 30px rgba(10, 10, 10, 0.06);
+}
+
+/* Themes */
+.theme-ivory { /* luxury */
+  --bg: #fbfbf7;
+  --text: #0f0f10;
+  --muted: #f2efe8;
+  --brand: #b68a5c; /* soft gold */
+  --brand-contrast: #0f0f10;
+  --card: #ffffff;
+}
+.theme-slate { /* modern */
+  --bg: #f7f9fc;
+  --text: #0e1116;
+  --muted: #edf1f7;
+  --brand: #274690; /* royal blue tamed */
+  --brand-contrast: #ffffff;
+  --card: #ffffff;
+}
+.theme-teal { /* calm */
+  --bg: #f6faf9;
+  --text: #0d1b1e;
+  --muted: #e9f3f2;
+  --brand: #0f766e; /* teal */
+  --brand-contrast: #ffffff;
+  --card: #ffffff;
+}
+
+html, body { scroll-behavior: smooth; }
+
+body.custom-portfolio {
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1, h2, h3, .display-font { font-family: 'Lora', serif; }
+
+/* Layout helpers */
+.container-xx {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Header */
+.header {
+  position: sticky; top: 0; z-index: 40;
+  backdrop-filter: saturate(1.2) blur(8px);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.nav-link { color: rgba(0,0,0,0.7); padding: 0.75rem 0.9rem; border-radius: 10px; }
+.nav-link:hover, .nav-link:focus { color: var(--brand); outline: none; background: var(--muted); }
+
+/* Buttons */
+.btn-brand { background: var(--brand); color: var(--brand-contrast); border-radius: 12px; padding: 0.65rem 1rem; box-shadow: var(--shadow); transition: background-color .2s ease, color .2s ease, box-shadow .2s ease; }
+.btn-brand:hover { filter: brightness(0.95); box-shadow: 0 12px 36px rgba(0,0,0,0.08); }
+.btn-ghost { background: transparent; color: var(--text); border: 1px solid rgba(0,0,0,0.08); border-radius: 12px; padding: 0.6rem 0.9rem; }
+.btn-ghost:hover { border-color: rgba(0,0,0,0.16); }
+
+/* Cards */
+.card { background: var(--card); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; box-shadow: var(--shadow); }
+.card:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,0,0,0.08); }
+
+/* Intro overlay */
+.intro-overlay {
+  position: fixed; inset: 0; background: var(--bg); display: grid; place-items: center;
+  transition: opacity 600ms ease, filter 600ms ease, visibility 0s linear 600ms; visibility: visible; z-index: 50;
+}
+.intro-overlay.hidden { opacity: 0; filter: blur(10px); visibility: hidden; }
+.intro-name {
+  font-size: clamp(32px, 6vw, 64px);
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+.intro-letter { opacity: 0; transform: translateY(12px); display: inline-block; }
+
+/* Reveal on scroll */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 500ms ease, transform 500ms ease; }
+.reveal.in-view { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .intro-overlay { transition: none; }
+  .intro-letter { opacity: 1; transform: none; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* Sections */
+.section { padding: 88px 0; }
+.section-muted { background: var(--muted); }
+.section-title { font-size: clamp(22px, 3vw, 32px); margin-bottom: 14px; }
+.section-sub { color: rgba(0,0,0,0.6); margin-bottom: 28px; }
+
+/* Project tags */
+.tag { background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.06); padding: 4px 10px; border-radius: 999px; font-size: 12px; }
+
+/* Timeline */
+.timeline { position: relative; }
+.timeline:before { content: ""; position: absolute; left: 14px; top: 0; bottom: 0; width: 2px; background: rgba(0,0,0,0.08); }
+.timeline-item { position: relative; padding-left: 44px; }
+.timeline-bullet { position: absolute; width: 10px; height: 10px; left: 10px; top: 20px; border-radius: 999px; background: var(--brand); box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 25%, transparent); }
+
+/* Footer */
+.footer { padding: 40px 0; color: rgba(0,0,0,0.6); }
+
+/* WhatsApp FAB (mobile only) */
+.whatsapp-fab { position: fixed; right: 16px; bottom: 18px; z-index: 45; }
+@media (min-width: 768px) { .whatsapp-fab { display: none; } }
+
+/* Focus ring */
+.focus-ring { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 35%, transparent); border-radius: 10px; }
