@@ -4,13 +4,36 @@ import "../portfolio.css";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../components/ui/dropdown-menu";
-import { Github, Linkedin, Mail, Phone, ArrowRight, MessageCircleMore, ExternalLink, Briefcase, Calendar, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, ArrowRight, MessageCircleMore, ExternalLink, Briefcase, Calendar, MapPin, ArrowDown } from "lucide-react";
 
 const THEMES = [
   { id: "theme-ivory", label: "Ivory & Gold", className: "theme-ivory" },
   { id: "theme-slate", label: "Slate & Blue", className: "theme-slate" },
   { id: "theme-teal", label: "Soft Teal", className: "theme-teal" },
 ];
+
+// === Visitor logging to Google Sheets ===
+async function logVisitor(email) {
+  try {
+    const data = {
+      email,
+      page: window.location.href,
+      browser: navigator.userAgent,
+      time: new Date().toLocaleString(),
+    };
+
+    await fetch("https://script.google.com/macros/s/AKfycby26lPrO6GydF7OHCroXnFObq2ScRZFJqGyeLafXduNLiy6_juHFXCYaqtnMQ-BVrog/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    console.log("✅ Visitor logged:", data);
+  } catch (err) {
+    console.error("❌ Logging failed:", err);
+  }
+}
+
 
 function useTheme() {
   const [theme, setTheme] = useState(() => localStorage.getItem("portfolio-theme") || THEMES[0].id);
@@ -108,18 +131,37 @@ function IntroOverlay() {
 }
 
 function Hero() {
+  useEffect(() => {
+    // Dynamically load the Visme script
+    const script = document.createElement('script');
+    script.src = 'https://static-bundles.visme.co/forms/vismeforms-embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup script on unmount
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <section id="home" className="section">
+      <div className="visme_d" data-title="Newsletter Subscription" data-url="33pjm841-newsletter-subscription?fullPage=true" data-domain="forms" data-full-page="true" data-min-height="100vh" data-form-id="155448"></div>
       <div className="container-xx grid md:grid-cols-2 gap-8 items-center">
         <div className="reveal">
           <h1 className="text-3xl md:text-5xl font-semibold leading-tight display-font">{profile.title}</h1>
           <p className="mt-4 text-[15px] md:text-base opacity-80">
             {profile.summary}
           </p>
+
+
           <div className="mt-6 flex items-center gap-3">
-            <a href="#projects"><Button className="btn-brand">View Projects <ArrowRight size={18} className="ml-2"/></Button></a>
+            <a href="https://drive.google.com/file/d/1weKbLVsJIc9Uzl_MIdKy-cv1hgy2rGoq/view?usp=sharing"><Button className="btn-brand">View Resume <ArrowDown size={18} className="ml-2"/></Button></a>
             <a href="#contact"><Button variant="outline" className="btn-ghost">Get in touch</Button></a>
           </div>
+
+
+          
           <div className="mt-6 flex items-center gap-4">
             <a className="nav-link" href={profile.contacts.github} target="_blank" rel="noreferrer" aria-label="GitHub link"><Github size={20}/></a>
             <a className="nav-link" href={profile.contacts.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn link"><Linkedin size={20}/></a>
@@ -323,6 +365,11 @@ function Contact() {
 export default function Portfolio() {
   const { theme, setTheme } = useTheme();
   useRevealOnScroll();
+  useEffect(() => {
+    const visitorEmail = "boomeshwara888b@gmail.com";
+    logVisitor(visitorEmail);
+  }, []);
+
 
   const onNavClick = (e) => {
     // keep default anchor smooth scroll, ensure focus for accessibility
